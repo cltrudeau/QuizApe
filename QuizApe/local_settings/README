@@ -1,0 +1,11 @@
+For each deployment there must be a file in this directory.  The "settings.py"
+file reads "local_settings/import_redirect" to look for a file name.  Two
+files with that name are loaded one in "local_settings" and the other in
+"local_settings/secret".
+
+The "import_redirect" file should not be in the repo as it makes it more
+likely that a deployment will use the wrong file.  The secrets directory MUST
+NOT be in the repo, 'cuz, SECRET!
+
+If the import_redirect file or the files named within it are not present the
+server will abort.

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% load awltags %}
+
+{% block content %}
+<div class="d-flex mb-2">
+  {% if group.survey.logo %}
+    <div class="p-2"> <img src="{{group.survey.logo.url}}"/> </div>
+  {% endif %}
+
+  <div class="p-2 ms-auto"> <img src="{% static 'img/logo_50.png' %}"/> </div>
+</div>
+
+{% if group.page.intro %}
+<div class="alert alert-dark mx-auto fs-4">
+  {{ group.page.intro | safe }}
+</div>
+{% endif %}
+
+<form class="mx-auto w-75" method="post">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+    {% accessor field 'html_name' as html_name %}
+    {% accessor questions [html_name] as question %}
+    <div class="mb-4">
+      <label class="form-label">{{field.label}}</label>
+
+      {% if question.question_type == QuestionTypes.BOOLEAN %}
+        <div class="form-check">
+          <input class="form-check-input" type="radio"
+            name="{{html_name}}" id="id_{{html_name}}-T" value="1"
+            {% if field.value == "1" %}checked{% endif %}>
+          <label class="form-check-label" for="id_{{html_name}}-T">True</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="0"
+            name="{{html_name}}" id="id_{{html_name}}-F"
+            {% if field.value == "0" %} checked {% endif %}>
+          <label class="form-check-label" for="id_{{html_name}}-F">False</label>
+        </div>
+      {% elif question.question_type == QuestionTypes.NUM %}
+        <input type="number" class="form-control" class="w-25"
+          name="{{html_name}}" id="id_{{html_name}}"
+          {% if field.value is not None %}
+            value="{{field.value}}"
+          {% endif %}
+          {% if answer.question.num_answer_min is not None %}
+            min="{{answer.question.num_answer_min}}"
+          {% endif %}
+          {% if answer.question.num_answer_max is not None %}
+            max="{{answer.question.num_answer_max}}"
+          {% endif %}
+          >
+      {% elif question.question_type == QuestionTypes.STAR %}
+        <br/>
+        <div class="d-flex mt-1">
+          <div class="text-center mb-1">
+            <div class="rating">
+              <input type="radio" name="{{html_name}}" value="5"
+                id="id_{{html_name}}-5"
+                {% if field.value == "5" %}checked{% endif %}>
+              <label for="id_{{html_name}}-5">☆</label>
+              <input type="radio" name="{{html_name}}" value="4"
+                id="id_{{html_name}}-4"
+                {% if field.value == "4" %}checked{% endif %}>
+              <label for="id_{{html_name}}-4">☆</label>
+              <input type="radio" name="{{html_name}}" value="3"
+                id="id_{{html_name}}-3"
+                {% if field.value == "3" %}checked{% endif %}>
+              <label for="id_{{html_name}}-3">☆</label>
+              <input type="radio" name="{{html_name}}" value="2"
+                id="id_{{html_name}}-2"
+                {% if field.value == "2" %}checked{% endif %}>
+              <label for="id_{{html_name}}-2">☆</label>
+              <input type="radio" name="{{html_name}}" value="1"
+                id="id_{{html_name}}-1"
+                {% if field.value == "1" %}checked{% endif %}>
+              <label for="id_{{html_name}}-1">☆</label>
+            </div>
+          </div>
+        </div>
+      {% elif question.question_type == QuestionTypes.TEXT %}
+        <textarea class="form-control" name="{{html_name}}"
+          id="id_{{html_name}}" rows="3">{{field.value|default:""}}</textarea>
+      {% elif question.question_type == QuestionTypes.CHOICE %}
+        <select class="form-select" name="{{html_name}}"
+            id="id_{{html_name}}">
+          {% if question.choices_blank_allowed %}
+            <option selected>-----</option>
+          {% endif %}
+          {% for value, name in question.choices %}
+            <option value="{{value}}"
+              {% if field.value == value %}selected{% endif %}
+              >{{name}}</option>
+          {% endfor %}
+        </select>
+      {% endif %}
+
+      {% if field.errors %}
+        <div class="text-danger">
+          {% for error in field.errors %}
+            {{error}}<br/>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <div class="d-flex mb-2">
+    {% if prev_url %}
+      <div class="p-2">
+        <a class="btn btn-lg btn-info" href="{{ prev_url }}">Previous</a>
+      </div>
+    {% endif %}
+
+    <div class="p-2 ms-auto">
+      <button type="submit" class="btn btn-lg btn-primary">Next</a>
+    </div>
+  </div>
+</form>
+
+
+{% endblock content %}

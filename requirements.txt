@@ -1,0 +1,4 @@
+Django==5.1
+django-awl==1.8.2
+matplotlib==3.9.2
+pillow==10.4.0

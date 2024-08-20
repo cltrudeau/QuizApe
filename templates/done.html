@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex mb-2">
+  {% if group.survey.logo %}
+    <div class="p-2"> <img src="{{group.survey.logo.url}}"/> </div>
+  {% endif %}
+
+  <div class="p-2 ms-auto"> <img src="{% static 'img/logo_50.png' %}"/> </div>
+</div>
+
+<div class="w-50 mx-auto">
+  <div class="alert alert-dark mx-auto fs-4">
+    {% if group.survey.outro %}
+      {{ group.survey.outro | safe }}
+    {% else %}
+      Thanks for participating!
+    {% endif %}
+  </div>
+
+  <div class="p-2">
+    <a class="btn btn-lg btn-info" href="{{ prev_url }}">Previous</a>
+  </div>
+</div>
+
+{% endblock content %}

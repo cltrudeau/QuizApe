@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex mb-2">
+  {% if group.survey.logo %}
+    <div class="p-2"> <img src="{{survey.logo.url}}"/> </div>
+  {% endif %}
+
+  <div class="p-2 ms-auto"> <img src="{% static 'img/logo_50.png' %}"/> </div>
+</div>
+
+<div class="w-50 mx-auto">
+  <div class="alert alert-dark mx-auto fs-4">
+    {{ group.survey.intro | safe }}
+  </div>
+
+  <div class="p-2 ms-auto text-center">
+    <a href="{{ start_page }}" class="btn btn-primary">Next</a>
+  </div>
+</div>
+
+{% endblock content %}

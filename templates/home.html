@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap5_qape.min.css' %}">
+
+  <title>arSensa Survey</title>
+
+  <style>
+    body { background-color: #fff; }
+  </style>
+</head>
+<body>
+  {% block container %}
+    <div class="d-flex flex-column min-vh-100 min-vw-100">
+      <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div>
+            <img src="{% static 'img/home_logo.png' %}" class="mx-auto d-block"
+              style="width: 30%; height: 30%">
+          <form class="mx-auto w-25 mt-4" method="post">
+            {% csrf_token %}
+            <div class="mb-4 text-center">
+              <label class="form-label" for="start-slug">
+                Enter a survey code
+              </label>
+              <input type="text" class="form-control" name="start-slug"
+                id="start-slug">
+            </div>
+            <div class="d-flex">
+              <button type="submit" class="btn btn-primary btn-lg mx-auto"
+                >Start</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endblock container %}
+</body>
+</html>
