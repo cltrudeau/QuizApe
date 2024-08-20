@@ -8,11 +8,8 @@ OUTSIDE_DIR = BASE_DIR.parent / 'outside/QuizApe'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fasqnt9j6r+wyh7db&#_bqdwa&=ye&j12@x5+*xxi3qr#=o#n*'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
