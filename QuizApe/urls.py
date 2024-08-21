@@ -16,9 +16,9 @@ urlpatterns = [
     path('done/<int:survey_id>/<str:token>/', core_views.done, name="done"),
 
     path('duplicate/<int:survey_id>/', core_views.duplicate, name="duplicate"),
-    path('result_page/<int:survey_id>/<int:page_num>/',
+    path('result_page/<int:survey_id>/<str:token>/',
         core_views.result_page, name="result_page"),
-    path('result_question/<int:q_id>/', core_views.result_question,
+    path('result_question/<int:q_id>/<str:token>/', core_views.result_question,
         name="result_question"),
 ]
 

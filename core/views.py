@@ -145,33 +145,23 @@ def duplicate(request, survey_id):
     return redirect('admin:core_survey_changelist')
 
 
-@staff_member_required
-def result_page(request, survey_id, page_num):
-    survey = get_object_or_404(Survey, id=survey_id)
-    page = get_object_or_404(Page, survey=survey, rank=page_num)
-    page_count = Page.objects.filter(survey=survey).count()
+def result_page(request, survey_id, token):
+    if not token:
+        raise Http404("Corrupted survey token")
 
-    next_page = None
-    if page.rank < page_count:
-        next_page = page.rank + 1
-
-    prev_page = None
-    if page.rank > 1:
-        prev_page = page.rank - 1
+    survey = get_object_or_404(Survey, id=survey_id, token=token)
 
     data = {
         "survey": survey,
-        "page": page,
-        "page_count": page_count,
-        "next_page": next_page,
-        "prev_page": prev_page,
     }
-    return render(request, "result_page.html", data)
+    return render(request, "result.html", data)
 
 
-@staff_member_required
-def result_question(request, q_id):
-    question = get_object_or_404(Question, id=q_id)
+def result_question(request, q_id, token):
+    if not token:
+        raise Http404("Corrupted survey token")
+
+    question = get_object_or_404(Question, id=q_id, page__survey__token=token)
     survey = question.page.survey
 
     survey_dir = Path(settings.MEDIA_ROOT) / f"s{survey.id}"

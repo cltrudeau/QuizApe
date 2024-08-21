@@ -28,12 +28,21 @@ class Survey(TimeTrackModel):
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
     logo = models.ImageField(blank=True, null=True)
+    editable = models.BooleanField(default=False)
+    token = models.CharField(default='', max_length=20, db_index=True)
 
     intro = models.TextField()
     outro = models.TextField()
 
     def __str__(self):
         return f"Survey(id={self.id}, {self.name})"
+
+    def save(self, *args, **kwargs):
+        just_created = self.pk is None
+        super().save(*args, **kwargs)
+        if just_created:
+            self.token = ''.join(secrets.choice(ALPHABET) for _ in range(18))
+            self.save()
 
 
 class Page(RankedModel, TimeTrackModel):

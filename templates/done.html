@@ -19,9 +19,11 @@
     {% endif %}
   </div>
 
-  <div class="p-2">
-    <a class="btn btn-lg btn-info" href="{{ prev_url }}">Previous</a>
-  </div>
+  {% if group.survey.editable %}
+    <div class="p-2">
+      <a class="btn btn-lg btn-info" href="{{ prev_url }}">Previous</a>
+    </div>
+  {% endif %}
 </div>
 
 {% endblock content %}

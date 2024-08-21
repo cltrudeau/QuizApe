@@ -45,7 +45,7 @@ class SurveyAdmin(base):
     show_survey.short_description = "Do Survey"
 
     def show_results(self, obj):
-        url = reverse('result_page', args=(obj.id, 1))
+        url = reverse('result_page', args=(obj.id, obj.token))
 
         return format_html('<a href="{}">View <i>{}</i></a>', url, obj.name)
     show_results.short_description = "Results"

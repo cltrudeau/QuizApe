@@ -62,7 +62,8 @@ class Command(BaseCommand):
             choices_blank_allowed=True,
             page=page)
 
-        survey = Survey.objects.create(name="Second Survey", slug="second")
+        survey = Survey.objects.create(name="Second Survey", slug="second",
+            editable=True)
         page = Page.objects.create(survey=survey)
 
         q1 = Question.objects.create(question_type=QuestionTypes.BOOLEAN,

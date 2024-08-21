@@ -1,0 +1,13 @@
+hr {
+    break-after: always;
+}
+
+.container {
+    margin-left: 1em;
+    margin-right: 1em;
+    max-width: unset;
+}
+
+.admin-box {
+    display: none !important;
+}
