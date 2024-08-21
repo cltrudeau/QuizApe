@@ -1,3 +1,11 @@
+# OpalStack has an older version of sqlite3 (3.30), Django 5.1 expects 3.31
+# => use Django 5.0 release!!!
+#
+# If they ever get around to updating, see:
+#
+# https://docs.opalstack.com/topic-guides/django/#using-databases-with-django
+#
+
 DEBUG = False
 ALLOWED_HOSTS = ['survey.arsensa.com', ]
 
@@ -23,10 +31,3 @@ LOGGING = {
         },
     },
 }
-
-# Fix for OpalStack's lack of a current version of sqlite3
-# https://docs.opalstack.com/topic-guides/django/#using-databases-with-django
-
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
