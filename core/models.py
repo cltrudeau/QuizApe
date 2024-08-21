@@ -29,7 +29,8 @@ class Survey(TimeTrackModel):
     slug = models.SlugField(unique=True)
     logo = models.ImageField(blank=True, null=True)
     editable = models.BooleanField(default=False)
-    token = models.CharField(default='', max_length=20, db_index=True)
+    token = models.CharField(blank=True, default='', max_length=20,
+        db_index=True)
 
     intro = models.TextField()
     outro = models.TextField()
@@ -47,7 +48,7 @@ class Survey(TimeTrackModel):
 
 class Page(RankedModel, TimeTrackModel):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
-    intro = models.TextField()
+    intro = models.TextField(blank=True)
 
     def grouped_filter(self):
         return Page.objects.filter(survey=self.survey)

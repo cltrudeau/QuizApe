@@ -17,12 +17,14 @@
   </div>
 </div>
 
+{% if request.user.is_superuser %}
 <div class="d-flex mb-2 admin-box">
   <div class="p-2 me-auto">
     <a class="btn btn-sm btn-info"
       href="{% url 'admin:core_survey_changelist' %}">« Admin</a>
   </div>
 </div>
+{% endif %}
 
 {% for page in survey.page_set.all %}
   {% for question in page.question_set.all %}
