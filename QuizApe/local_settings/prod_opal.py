@@ -1,9 +1,11 @@
 DEBUG = False
-ALLOWED_HOSTS = ['qape.arsensa.com', ]
+ALLOWED_HOSTS = ['survey.arsensa.com', ]
 
-CSRF_TRUSTED_ORIGINS = ['https://qape.arsensa.com', 'http://qape.arsensa.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://survey.arsensa.com', 'http://survey.arsensa.com'
+]
 
-HOST_PREFIX = 'https://qape.arsensa.com'
+HOST_PREFIX = 'https://survey.arsensa.com'
 
 LOGGING = {
     'version':1,
@@ -21,3 +23,10 @@ LOGGING = {
         },
     },
 }
+
+# Fix for OpalStack's lack of a current version of sqlite3
+# https://docs.opalstack.com/topic-guides/django/#using-databases-with-django
+
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
