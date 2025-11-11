@@ -90,7 +90,7 @@ class QuestionAdmin(base):
         if obj.answer_set.count() == 0:
             return format_html('<i> No answers </i>')
 
-        url = reverse('result_question', args=(obj.id, ))
+        url = reverse('result_question', args=(obj.id, obj.page.survey.token))
         return format_html('<a href="{}">Graph</a>', url)
 
 
