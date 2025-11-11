@@ -138,7 +138,8 @@ class Question(RankedModel, TimeTrackModel):
         data = (total_true, total_false, dna)
 
         fig, axis = plt.subplots()
-        axis.bar( ("True", "False", "None"), data, color=self.COLOURS)
+        axis.barh( ("True", "False", "None"), data, color=self.COLOURS)
+        fig.tight_layout()
         fig.savefig(file, format="svg")
         return file
 
@@ -172,7 +173,8 @@ class Question(RankedModel, TimeTrackModel):
         labels.append("None")
 
         fig, axis = plt.subplots()
-        axis.bar(labels, data, color=self.COLOURS)
+        axis.barh(labels, data, color=self.COLOURS)
+        fig.tight_layout()
         fig.savefig(file, format="svg")
 
         return file
@@ -193,7 +195,8 @@ class Question(RankedModel, TimeTrackModel):
         labels.append("None")
 
         fig, axis = plt.subplots()
-        axis.bar(labels, data, color=self.COLOURS)
+        axis.barh(labels, data, color=self.COLOURS)
+        fig.tight_layout()
         fig.savefig(file, format="svg")
 
         return file
@@ -214,7 +217,8 @@ class Question(RankedModel, TimeTrackModel):
         data.append(dna)
 
         fig, axis = plt.subplots()
-        axis.bar( labels, data, color=self.COLOURS)
+        axis.barh(labels, data, color=self.COLOURS)
+        fig.tight_layout()
         fig.savefig(file, format="svg")
 
         return file

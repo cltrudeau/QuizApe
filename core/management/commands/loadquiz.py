@@ -63,7 +63,7 @@ class Command(BaseCommand):
             if "intro" in content:
                 kwargs["intro"] = content["intro"]
             if "outro" in content:
-                kwargs["outro"] = content["intro"]
+                kwargs["outro"] = content["outro"]
 
             survey = Survey.objects.create(**kwargs)
             for c_page in content["pages"]:

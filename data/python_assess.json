@@ -1,0 +1,108 @@
+{
+    "name": "Python Self Assessment",
+    "slug": "python",
+    "intro": "Please answer the following questions to rate your Python skills",
+    "outro": "Thank you for doing the self assessment",
+    "pages": [
+        {
+            "questions": [
+                {
+                    "type": "CHOICE",
+                    "text": "How long have you been coding in any language?",
+                    "choices": [
+                        [0, "Less than a year"],
+                        [1, "1-2 years"],
+                        [5, "2-5 years"],
+                        [6, "More than 5 years"]
+                    ]
+                },
+                {
+                    "type": "CHOICE",
+                    "text": "How long have you been coding in Python?",
+                    "choices": [
+                        [0, "Less than a year"],
+                        [1, "1-2 years"],
+                        [5, "2-5 years"],
+                        [6, "More than 5 years"]
+                    ]
+                },
+                {
+                    "type": "CHOICE",
+                    "text": "What kinds of projects do you work on most?",
+                    "choices": [
+                        [0, "Web"],
+                        [1, "Data Science"],
+                        [2, "Machine Learning"],
+                        [3, "Other"]
+                    ]
+                }
+            ]
+        },
+        {
+            "intro": "For each of the following topics, rate your familiarity",
+            "questions": [
+                {
+                    "type": "CHOICE",
+                    "text": [
+                        "Variable assignment",
+                        "Integers and floats",
+                        "Strings (quote types, multi-line)",
+                        "String methods (lower(), startswith(), index(), etc)",
+                        "f-Strings",
+                        "Converting types (e.g. string to integer)",
+                        "Lists",
+                        "Tuples",
+                        "Dictionaries",
+                        "Sets 🔹",
+                        "Condtionals (if, elif, else)",
+                        "Comparison operators (==, <=, >=, etc)",
+                        "Membership operators (is, in)",
+                        "Looping using for",
+                        "Break and continue",
+                        "Using range()",
+                        "Getting the length of iterables",
+                        "Writing functions",
+                        "Functions with named arguments",
+                        "Functions with arbitrary numbers of arguments 🔹",
+                        "Calling functions with *args and **kwargs",
+                        "Slicing (e.g. names[2:3], cars[-1], etc.)",
+                        "List comprehensions",
+                        "Dictionary comprehensions 🔹",
+                        "Defining classes",
+                        "Using __init__ 🔹",
+                        "Defining dataclasses 🔹",
+                        "Class attributes",
+                        "Class methods 🔹",
+                        "Declaring @property methods 🔹",
+                        "Writing dunder methods (__str__(), __ge__(), etc)",
+                        "Class inheritence",
+                        "Method Resolution Order (MRO) 🔹",
+                        "Catching exceptions",
+                        "Writing exception handlers",
+                        "Dates and times",
+                        "Sorting",
+                        "Shallow vs deep copying",
+                        "Reading a writing to files",
+                        "Using the with statement",
+                        "Lambdas 🔹",
+                        "Decorators (using)",
+                        "Decorators (writing) 🔹",
+                        "Coding in multiple files (modules)",
+                        "Importing modules",
+                        "if __name__ == '__main__'",
+                        "Command line arguments 🔹",
+                        "Virtual environments",
+                        "Installing packages using `pip`",
+                        "SQL to fetch and modify data in a database"
+                    ],
+                    "choices": [
+                        [0, "Not familiar"],
+                        [1, "Have read about it"],
+                        [2, "Have used it"],
+                        [3, "Use it regularly"]
+                    ]
+                }
+            ]
+        }
+    ]
+}
