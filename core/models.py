@@ -204,7 +204,7 @@ class Question(RankedModel, TimeTrackModel):
     def _generate_choice(self, survey, file):
         total = AnswerGroup.objects.filter(survey=survey).count()
 
-        labels = []
+        labels = ["None", ]
         data = []
         for choice in self.choices:
             labels.append(choice[1])
@@ -212,7 +212,6 @@ class Question(RankedModel, TimeTrackModel):
                 question=self, choices_answer=choice[0]).count()
             data.append(value)
 
-        labels.append("None")
         dna = total - sum(data)
         data.append(dna)
 
