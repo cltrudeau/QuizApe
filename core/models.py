@@ -213,7 +213,7 @@ class Question(RankedModel, TimeTrackModel):
             data.append(value)
 
         dna = total - sum(data)
-        data.append(dna)
+        data.insert(0, dna)
 
         fig, axis = plt.subplots()
         axis.barh(labels, data, color=self.COLOURS)

@@ -14,12 +14,16 @@ from core.models import (Survey, Page, Question, QuestionTypes, AnswerGroup,
 
 admin.site.unregister(Group)
 
+# Change the date/time format display
+from django.conf.locale.en import formats as en_formats
+en_formats.DATETIME_FORMAT = "Y-m-d H:i:s"
+
 # ===========================================================================
 
 base = fancy_modeladmin('id', 'name')
 base.add_fk_link('page_set', Page, 'survey', display='{{obj.count}} Pages')
 base.add_displays('show_questions', 'show_survey', 'show_results',
-    'show_duplicate')
+    'show_duplicate', 'created')
 
 @admin.register(Survey)
 class SurveyAdmin(base):
@@ -97,7 +101,7 @@ class QuestionAdmin(base):
 base = fancy_modeladmin('id')
 base.add_link('survey', 'Survey', '{{obj.name}}')
 base.add_link('page', 'Page', 'Page #{{obj.rank}}')
-base.add_displays('token')
+base.add_displays('token', 'created')
 
 @admin.register(AnswerGroup)
 class AnswerGroupAdmin(base):
@@ -108,6 +112,7 @@ base = fancy_modeladmin('id')
 base.add_link('question', 'Question', '{{obj.short_text}}')
 base.add_displays('show_type', 'show_answer')
 base.add_link('answer_group', 'AnswerGroup')
+base.add_displays('created')
 
 @admin.register(Answer)
 class AnswerAdmin(base):
